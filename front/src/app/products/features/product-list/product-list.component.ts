@@ -10,6 +10,9 @@ import { FormsModule } from "@angular/forms";
 import { DropdownModule } from "primeng/dropdown";
 import { CommonModule } from '@angular/common';
 import { TagModule } from 'primeng/tag';
+import { SplitterModule } from 'primeng/splitter';
+import { ToolbarModule } from 'primeng/toolbar';
+import { PanelMenuComponent } from "app/shared/ui/panel-menu/panel-menu.component";
 
 const emptyProduct: Product = {
   id: 0,
@@ -33,9 +36,10 @@ const emptyProduct: Product = {
   templateUrl: "./product-list.component.html",
   styleUrls: ["./product-list.component.scss"],
   standalone: true,
-  imports: [DataViewModule, CardModule, ButtonModule, DialogModule, ProductFormComponent, FormsModule, DropdownModule, CommonModule, TagModule],
+  imports: [DataViewModule, CardModule, ButtonModule, DialogModule, ProductFormComponent, FormsModule, DropdownModule, CommonModule, TagModule,PanelMenuComponent,SplitterModule,ToolbarModule],
 })
 export class ProductListComponent implements OnInit {
+  title = "ALTEN SHOP";
   private readonly productsService = inject(ProductsService);
 
   public readonly products = this.productsService.products;
