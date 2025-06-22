@@ -2,13 +2,15 @@ import { Injectable, inject, signal } from "@angular/core";
 import { Product } from "./product.model";
 import { HttpClient } from "@angular/common/http";
 import { catchError, Observable, of, tap } from "rxjs";
+import { environment } from "environments/environment";
+
 
 @Injectable({
     providedIn: "root"
 }) export class ProductsService {
 
     private readonly http = inject(HttpClient);
-    private readonly path = "/api/products";
+    private readonly path = `${environment.apiUrl}/products`;
     
     private readonly _products = signal<Product[]>([]);
 
@@ -19,7 +21,11 @@ import { catchError, Observable, of, tap } from "rxjs";
             catchError((error) => {
                 return this.http.get<Product[]>("assets/products.json");
             }),
-            tap((products) => this._products.set(products)),
+            tap((products) => {
+                console.log("AAAA  : ",products);
+                this._products.set(products);
+
+            }),
         );
     }
 

@@ -6,6 +6,10 @@ import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import { DataViewModule } from 'primeng/dataview';
 import { DialogModule } from 'primeng/dialog';
+import { FormsModule } from "@angular/forms";
+import { DropdownModule } from "primeng/dropdown";
+import { CommonModule } from '@angular/common';
+import { TagModule } from 'primeng/tag';
 
 const emptyProduct: Product = {
   id: 0,
@@ -29,7 +33,7 @@ const emptyProduct: Product = {
   templateUrl: "./product-list.component.html",
   styleUrls: ["./product-list.component.scss"],
   standalone: true,
-  imports: [DataViewModule, CardModule, ButtonModule, DialogModule, ProductFormComponent],
+  imports: [DataViewModule, CardModule, ButtonModule, DialogModule, ProductFormComponent, FormsModule, DropdownModule, CommonModule, TagModule],
 })
 export class ProductListComponent implements OnInit {
   private readonly productsService = inject(ProductsService);
@@ -40,8 +44,26 @@ export class ProductListComponent implements OnInit {
   public isCreation = false;
   public readonly editedProduct = signal<Product>(emptyProduct);
 
+
+  public searchTerm = "";
+  public selectedCategory = "";
+  public categories: string[] = [];
+
   ngOnInit() {
-    this.productsService.get().subscribe();
+    this.productsService.get().subscribe(products => {
+      this.categories = [...new Set(products.map(p => p.category))];
+    });
+  }
+
+  public get filteredProducts(): Product[] {
+    return this.products()
+      .filter(product =>
+        product.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        product.description.toLowerCase().includes(this.searchTerm.toLowerCase())
+      )
+      .filter(product =>
+        !this.selectedCategory || product.category === this.selectedCategory
+      );
   }
 
   public onCreate() {
