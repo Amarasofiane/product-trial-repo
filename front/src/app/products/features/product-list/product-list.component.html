@@ -1,42 +1,65 @@
-<h1 class="text-center">Liste des produits</h1>
-
-<div class="flex items-center justify-between mb-4">
-    <p-button label="Créer produit" (onClick)="onCreate()" class="mr-auto p-button-sm" />
-    <div class="flex gap-3">
-        <input type="text" pInputText [(ngModel)]="searchTerm" placeholder="Rechercher" class="p-inputtext-sm" />
-        <p-dropdown [options]="categories" [(ngModel)]="selectedCategory" placeholder="Filtrer par catégorie"
-            class="p-dropdown-sm">
-        </p-dropdown>
+<p-toolbar [style]="{ height: '100px' }">
+    <div class="p-toolbar-group-start">
+        <img src="assets/icons/icon-72x72.png" alt="logo" />
     </div>
-</div>
+    <div class="p-toolbar-group-center">
+        {{ title }}
+    </div>
+    <div class="p-toolbar-group-end">
+        <i class="pi pi-shopping-cart" style="font-size: 2rem"></i>
+    </div>
+</p-toolbar>
+<p-splitter [panelSizes]="[20, 80]" [style]="{ height: 'calc(100vh - 100px)' }">
+    <ng-template pTemplate>
+        <div class="w-full">
+            <app-panel-menu />
+        </div>
+    </ng-template>
+    <ng-template pTemplate>
+        <div class="w-full app-content">
 
-<p-dataView #dv [value]="filteredProducts" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]"
-    paginatorPosition="bottom">
-    <ng-template pTemplate="list" let-products>
-        @for (product of products; track product) {
-        <p-card class="block mb-2">
-            <span class="font-medium text-secondary text-sm">{{ product.category }}</span>
+            <h1 class="text-center">Liste des produits</h1>
 
-            <div class="flex justify-between items-center mt-4">
-                <div class="text-lg font-medium text-900">{{ product.name }}</div>
-
-                <!-- Tag pour rupture de stock -->
-                <p-tag *ngIf="product.inventoryStatus === 'OUTOFSTOCK'" value="Rupture" class="tag-max-margin"
-                    severity="danger">
-                </p-tag>
+            <div class="toolbar flex items-center justify-between mb-4">
+                <div class="search-filter flex gap-2">
+                    <input type="text" pInputText [(ngModel)]="searchTerm" placeholder="Rechercher"
+                        class="search-input" />
+                    <p-dropdown [options]="categories" [(ngModel)]="selectedCategory"
+                        placeholder="Filtrer par catégorie" class="filter-dropdown"></p-dropdown>
+                </div>
+                <p-button icon="pi pi-plus" label="Ajouter" (onClick)="onCreate()" severity="info"></p-button>
             </div>
 
-            <ng-template pTemplate="footer">
-                <div class="flex gap-3 mt-1">
-                    <p-button label="Modifier" severity="secondary" (onClick)="onUpdate(product)" />
-                    <p-button label="Supprimer" severity="danger" (onClick)="onDelete(product)" />
-                </div>
-            </ng-template>
-        </p-card>
-        }
-    </ng-template>
-</p-dataView>
+            <p-dataView #dv [value]="filteredProducts" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]"
+                paginatorPosition="bottom">
+                <ng-template pTemplate="list" let-products>
+                    @for (product of products; track product) {
+                    <p-card class="block mb-2">
+                        <span class="font-medium text-secondary text-sm">{{ product.category }}</span>
 
-<p-dialog [(visible)]="isDialogVisible" [style]="{ width: '50vw' }" header="Ajout/Edition produit">
-    <app-product-form [product]="editedProduct()" (save)="onSave($event)" (cancel)="onCancel()" />
-</p-dialog>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="text-lg font-medium text-900">{{ product.name }}</div>
+                            <p-tag *ngIf="product.inventoryStatus === 'OUTOFSTOCK'" value="Rupture"
+                                class="tag-max-margin" severity="danger">
+                            </p-tag>
+                        </div>
+                        <ng-template pTemplate="footer">
+                            <div class="flex gap-3 mt-1">
+                                <p-button icon="pi pi-pencil" (onClick)="onUpdate(product)" severity="info"
+                                    tooltip="Modifier"></p-button>
+                                <p-button icon="pi pi-trash"
+                                    (onClick)="onDelete(product)" severity="danger" tooltip="Supprimer"></p-button>
+                            </div>
+                        </ng-template>
+                    </p-card>
+                    }
+                </ng-template>
+            </p-dataView>
+
+            <p-dialog [(visible)]="isDialogVisible" [style]="{ width: '50vw' }" header="Ajout/Edition produit">
+                <app-product-form [product]="editedProduct()" (save)="onSave($event)" (cancel)="onCancel()" />
+            </p-dialog>
+
+        </div>
+    </ng-template>
+</p-splitter>

@@ -8,3 +8,43 @@
   margin-left: auto; 
 }
 
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  .search-filter {
+    display: flex;
+    gap: 20px;
+    padding-left: 30px;
+    .search-input {
+      width: 200px;
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+
+      &:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+    }
+
+    .filter-dropdown {
+      width: 180px;
+      border-radius: 8px;
+    }
+  }
+
+  .add-button {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #fff;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: #218838;
+      border-color: #1e7e34;
+    }
+  }
+}
