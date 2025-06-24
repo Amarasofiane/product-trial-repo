@@ -20,13 +20,12 @@ public class InitData {
     private final ProductRepository productRepository;
 
 
-
     public InitData(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
     @PostConstruct
-    public void init() throws IOException {
+    public void init() throws IOException { // stockage des données fichier products.json en BDD H2
         ObjectMapper objectMapper = new ObjectMapper();
         Resource resource = new ClassPathResource("products.json");
 

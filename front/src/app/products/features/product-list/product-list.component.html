@@ -6,6 +6,7 @@
         {{ title }}
     </div>
     <div class="p-toolbar-group-end">
+        <p-button label="déconnection" (onClick)="logout()" severity="danger"></p-button>
         <i class="pi pi-shopping-cart" style="font-size: 2rem"></i>
     </div>
 </p-toolbar>
@@ -44,11 +45,11 @@
                             </p-tag>
                         </div>
                         <ng-template pTemplate="footer">
-                            <div class="flex gap-3 mt-1">
+                            <div *ngIf="showAdminOptions()" class="flex gap-3 mt-1">
                                 <p-button icon="pi pi-pencil" (onClick)="onUpdate(product)" severity="info"
                                     tooltip="Modifier"></p-button>
-                                <p-button icon="pi pi-trash"
-                                    (onClick)="onDelete(product)" severity="danger" tooltip="Supprimer"></p-button>
+                                <p-button icon="pi pi-trash" (onClick)="onDelete(product)" severity="danger"
+                                    tooltip="Supprimer"></p-button>
                             </div>
                         </ng-template>
                     </p-card>

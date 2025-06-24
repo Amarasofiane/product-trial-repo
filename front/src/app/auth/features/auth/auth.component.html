@@ -1,8 +1,8 @@
 <div class="login-container">
     <div class="login-card">
         <div class="info-section">
-            <p><strong>Admin :</strong> Username: <span>Amara</span>, Password: <span>password</span></p>
-            <p><strong>Public :</strong> Username: <span>Juliette</span>, Password: <span>password</span></p>
+            <p> Username: <span>sofiane</span>, <span>admin</span></p>
+            <p>Username: <span>juliette</span>, <span>user</span></p>
         </div>
         <h2 class="title">Welcome Back</h2>
         <p class="subtitle">Please log in to continue</p>
@@ -13,11 +13,12 @@
                     placeholder="Enter your username" required />
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" [(ngModel)]="password" name="password"
-                    placeholder="Enter your password" required />
+                <label for="role">Role</label>
+                <p-dropdown [options]="roles" [(ngModel)]="role" name="role" optionValue="value" optionLabel="label"
+                    placeholder="Select a role" [style]="{'width':'100%'}">
+                </p-dropdown>
             </div>
-            <button type="submit" [disabled]="loading()" class="login-btn">
+            <button type="submit" class="login-btn">
                 <span *ngIf="loading(); else normalText">Loading...</span>
                 <ng-template #normalText>Log In</ng-template>
             </button>

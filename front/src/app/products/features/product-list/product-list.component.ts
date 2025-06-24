@@ -13,6 +13,8 @@ import { TagModule } from 'primeng/tag';
 import { SplitterModule } from 'primeng/splitter';
 import { ToolbarModule } from 'primeng/toolbar';
 import { PanelMenuComponent } from "app/shared/ui/panel-menu/panel-menu.component";
+import { UserAuthService } from "app/auth/data-access/user-auth-service.service";
+import { Router } from "@angular/router";
 
 const emptyProduct: Product = {
   id: 0,
@@ -36,7 +38,7 @@ const emptyProduct: Product = {
   templateUrl: "./product-list.component.html",
   styleUrls: ["./product-list.component.scss"],
   standalone: true,
-  imports: [DataViewModule, CardModule, ButtonModule, DialogModule, ProductFormComponent, FormsModule, DropdownModule, CommonModule, TagModule,PanelMenuComponent,SplitterModule,ToolbarModule],
+  imports: [DataViewModule, CardModule, ButtonModule, DialogModule, ProductFormComponent, FormsModule, DropdownModule, CommonModule, TagModule, PanelMenuComponent, SplitterModule, ToolbarModule],
 })
 export class ProductListComponent implements OnInit {
   title = "ALTEN SHOP";
@@ -52,6 +54,10 @@ export class ProductListComponent implements OnInit {
   public searchTerm = "";
   public selectedCategory = "";
   public categories: string[] = [];
+
+  constructor(public userAuthService: UserAuthService, private router: Router) {
+
+  }
 
   ngOnInit() {
     this.productsService.get().subscribe(products => {
@@ -101,5 +107,15 @@ export class ProductListComponent implements OnInit {
 
   private closeDialog() {
     this.isDialogVisible = false;
+  }
+
+  public logout() {
+    this.userAuthService.logout();
+    alert('Vous êtes déconnecté.');
+    this.router.navigate(['/auth']);
+  }
+
+  public showAdminOptions(): boolean {
+    return this.userAuthService.isAdmin();
   }
 }

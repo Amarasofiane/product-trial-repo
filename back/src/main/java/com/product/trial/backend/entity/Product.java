@@ -74,7 +74,7 @@ public class Product {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	@PrePersist
+	@PrePersist  //maj de createAt et updateAt dynamiquement à la creation des données de la table product
     public void prePersist() {
         Long now = System.currentTimeMillis();
         this.createdAt = now; 

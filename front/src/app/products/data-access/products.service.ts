@@ -11,7 +11,7 @@ import { environment } from "environments/environment";
 
     private readonly http = inject(HttpClient);
     private readonly path = `${environment.apiUrl}/products`;
-    
+
     private readonly _products = signal<Product[]>([]);
 
     public readonly products = this._products.asReadonly();
@@ -22,7 +22,6 @@ import { environment } from "environments/environment";
                 return this.http.get<Product[]>("assets/products.json");
             }),
             tap((products) => {
-                console.log("AAAA  : ",products);
                 this._products.set(products);
 
             }),
