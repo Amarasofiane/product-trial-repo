@@ -118,4 +118,8 @@ export class ProductListComponent implements OnInit {
   public showAdminOptions(): boolean {
     return this.userAuthService.isAdmin();
   }
+
+    public isAuth(): boolean {
+    return this.userAuthService.isAuthenticated();
+  }
 }

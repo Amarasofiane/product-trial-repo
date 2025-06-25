@@ -12,6 +12,10 @@
       "projectType": "application",
       "prefix": "app",
       "architect": {
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {}
+        },
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
@@ -46,7 +50,9 @@
               "node_modules/chart.js/dist/chart.js"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/styles"]
+              "includePaths": [
+                "src/styles"
+              ]
             },
             "vendorChunk": true,
             "extractLicenses": false,
@@ -115,8 +121,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }

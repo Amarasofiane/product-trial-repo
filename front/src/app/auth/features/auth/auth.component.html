@@ -1,26 +1,26 @@
 <div class="login-container">
     <div class="login-card">
         <div class="info-section">
-            <p> Username: <span>sofiane</span>, <span>admin</span></p>
-            <p>Username: <span>juliette</span>, <span>user</span></p>
+            <p> Utilisateur: <span>sofiane</span>, <span>admin</span></p>
+            <p>Utilisateur: <span>juliette</span>, <span>user</span></p>
         </div>
-        <h2 class="title">Welcome Back</h2>
-        <p class="subtitle">Please log in to continue</p>
+        <h2 class="title">Bienvenue </h2>
+        <p class="subtitle">Veuillez vous connecter pour continuer</p>
         <form (ngSubmit)="login()" class="form">
             <div class="form-group">
-                <label for="username">Username</label>
+                <label for="username">Utilisateur</label>
                 <input type="text" id="username" [(ngModel)]="username" name="username"
-                    placeholder="Enter your username" required />
+                    placeholder="Entrez votre nom d'utilisateur" required />
             </div>
             <div class="form-group">
-                <label for="role">Role</label>
+                <label for="role">Rôle</label>
                 <p-dropdown [options]="roles" [(ngModel)]="role" name="role" optionValue="value" optionLabel="label"
-                    placeholder="Select a role" [style]="{'width':'100%'}">
+                    placeholder="Sélectionnez un rôle" [style]="{'width':'100%'}">
                 </p-dropdown>
             </div>
             <button type="submit" class="login-btn">
-                <span *ngIf="loading(); else normalText">Loading...</span>
-                <ng-template #normalText>Log In</ng-template>
+                <span *ngIf="loading(); else normalText">Se connecter...</span>
+                <ng-template #normalText>Se connecter</ng-template>
             </button>
             <p *ngIf="errorMessage()" class="error-message">{{ errorMessage() }}</p>
         </form>

@@ -6,8 +6,8 @@
         {{ title }}
     </div>
     <div class="p-toolbar-group-end">
-        <p-button label="déconnection" (onClick)="logout()" severity="danger"></p-button>
-        <i class="pi pi-shopping-cart" style="font-size: 2rem"></i>
+        <i class="pi pi-shopping-cart" style="font-size: 2rem;padding: 20px;"></i>
+        <p-button *ngIf="isAuth()" label="Se déconnecter" (onClick)="logout()" severity="danger"></p-button>
     </div>
 </p-toolbar>
 <p-splitter [panelSizes]="[20, 80]" [style]="{ height: 'calc(100vh - 100px)' }">
