@@ -1,6 +1,6 @@
 # Application de Gestion des Produits
 
-Ce projet est une application web complète basée sur **Angular** pour le frontend et **Spring Boot** pour le backend. Elle propose des fonctionnalités avancées pour la gestion des produits avec une authentification basée sur les rôles, un design moderne, et des tests pour garantir la qualité du code.
+Ce projet est une application web complète basée sur **Angular** pour le frontend et **Spring Boot** pour le backend. Elle propose des fonctionnalités pour la gestion des produits (CRUD) avec une authentification basée sur les rôles (spring security), et des tests pour garantir la qualité du code.
 
 ---
 
@@ -16,9 +16,10 @@ Ce projet est une application web complète basée sur **Angular** pour le front
 2. **Filtres avancés** :
    - Recherche par catégorie.
    - Recherche par mot-clé pour simplifier la navigation dans les produits.
+   - ajout d'un tag (rupture de stock) sur chaque produit en rupture
 
-3. **Design modernisé** :
-   - Mise à jour des thèmes et du style général pour une meilleure expérience utilisateur.
+3. **Design** :
+   - Mise à jour des thèmes et du style de certains composant.
 
 4. **Auth Guards** :
    - Protection des routes pour empêcher l'accès non autorisé selon les rôles.
@@ -30,8 +31,7 @@ Ce projet est une application web complète basée sur **Angular** pour le front
    - La configuration des tests unitaires avec **Karma** et **Jasmine** n'est pas complètement fonctionnelle.
 
 7. **Tests effectués** :
-   - Tests unitaires sur les services et les guards avec **Jest**.
-   - Tests d'intégration pour les fonctionnalités critiques (authentification, gestion des produits).
+   - Tests d'intégration et test unitaire des services et controllers.
 
 ---
 
@@ -54,7 +54,6 @@ Ce projet est une application web complète basée sur **Angular** pour le front
 
 5. **Tests effectués** :
    - Tests unitaires pour les services et les contrôleurs avec **JUnit**.
-   - Tests d'intégration pour vérifier les endpoints REST, y compris la validation des tokens JWT.
 
 ---
 
@@ -67,6 +66,7 @@ Ce projet est une application web complète basée sur **Angular** pour le front
 
 ### Backend
 - **Java Spring Boot** : Framework pour des applications web robustes.
+- **Java Spring JPA** : Framework pour une gestion de percistence automatique.
 - **Spring Security** : Gestion de l'authentification et de l'autorisation.
 - **JWT** : Utilisé pour la gestion des sessions utilisateur.
 - **H2 Database** : Base de données en mémoire rapide et facile à configurer.
