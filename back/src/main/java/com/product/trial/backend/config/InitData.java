@@ -25,7 +25,7 @@ public class InitData {
     }
 
     @PostConstruct
-    public void init() throws IOException { // stockage des données fichier products.json en BDD H2
+    public void init() throws IOException { // stockage des données fichier product.json en BDD H2
         ObjectMapper objectMapper = new ObjectMapper();
         Resource resource = new ClassPathResource("products.json");
 
